@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgey8shux0nnb"]
+
+[ext_resource type="Texture2D" uid="uid://do0e7jlcki47y" path="res://assets/lanes.png" id="2_ov0my"]
+
+[node name="Background" type="Node2D"]
+
+[node name="Lane" type="Sprite2D" parent="."]
+position = Vector2(53, 0)
+texture = ExtResource("2_ov0my")

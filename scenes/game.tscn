@@ -1,0 +1,156 @@
+[gd_scene load_steps=13 format=3 uid="uid://c63eg8e6s22vu"]
+
+[ext_resource type="PackedScene" uid="uid://cfml6resn48u8" path="res://scenes/player.tscn" id="1_alnn0"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_pjix7"]
+[ext_resource type="Texture2D" uid="uid://do0e7jlcki47y" path="res://assets/lanes.png" id="2_4y7ct"]
+[ext_resource type="Texture2D" uid="uid://csbdwt08ah4r8" path="res://assets/bottom.png" id="4_ho4sr"]
+[ext_resource type="Texture2D" uid="uid://vdwiby5fn1h2" path="res://assets/top.png" id="5_157au"]
+[ext_resource type="PackedScene" uid="uid://ghnichm4vj4p" path="res://scenes/start_menu.tscn" id="6_i2t0t"]
+[ext_resource type="FontFile" uid="uid://blhn13t8etmps" path="res://assets/PixelOperator8-Bold.ttf" id="7_sab0q"]
+[ext_resource type="AudioStream" uid="uid://uhsr4b23okxw" path="res://assets/bgmusic.wav" id="8_506h2"]
+[ext_resource type="Script" path="res://scenes/audio_stream_player_2d.gd" id="9_n0nn1"]
+
+[sub_resource type="Animation" id="Animation_gqo1l"]
+resource_name = "bob"
+length = 2.00001
+loop_mode = 2
+step = 0.1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-5, -0.25, 0, 0.25, 0, -1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2)
+}
+
+[sub_resource type="Animation" id="Animation_o6y27"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r12hj"]
+_data = {
+"RESET": SubResource("Animation_o6y27"),
+"bob": SubResource("Animation_gqo1l")
+}
+
+[node name="Game" type="Node2D"]
+position = Vector2(19, 0)
+script = ExtResource("1_pjix7")
+
+[node name="Player" parent="." instance=ExtResource("1_alnn0")]
+z_index = 1
+position = Vector2(0, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+z_index = 4
+position = Vector2(53, 0)
+zoom = Vector2(8, 8)
+
+[node name="Lanes" type="Node" parent="."]
+
+[node name="Lane" type="Sprite2D" parent="Lanes"]
+position = Vector2(72, 0)
+texture = ExtResource("2_4y7ct")
+
+[node name="Lane2" type="Sprite2D" parent="Lanes"]
+position = Vector2(216, 0)
+texture = ExtResource("2_4y7ct")
+
+[node name="Lane3" type="Sprite2D" parent="Lanes"]
+position = Vector2(360, 0)
+texture = ExtResource("2_4y7ct")
+
+[node name="Bottom" type="Sprite2D" parent="Lanes"]
+position = Vector2(72, 32)
+texture = ExtResource("4_ho4sr")
+
+[node name="Bottom2" type="Sprite2D" parent="Lanes"]
+position = Vector2(216, 32)
+texture = ExtResource("4_ho4sr")
+
+[node name="Bottom3" type="Sprite2D" parent="Lanes"]
+position = Vector2(360, 32)
+texture = ExtResource("4_ho4sr")
+
+[node name="Top" type="Sprite2D" parent="Lanes"]
+position = Vector2(72, -32)
+texture = ExtResource("5_157au")
+
+[node name="Top2" type="Sprite2D" parent="Lanes"]
+position = Vector2(216, -32)
+texture = ExtResource("5_157au")
+
+[node name="Top3" type="Sprite2D" parent="Lanes"]
+position = Vector2(360, -32)
+texture = ExtResource("5_157au")
+
+[node name="Obstacles" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Death_Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Start Menu" parent="." instance=ExtResource("6_i2t0t")]
+z_index = 1
+position = Vector2(70, -5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Start Menu"]
+libraries = {
+"": SubResource("AnimationLibrary_r12hj")
+}
+autoplay = "bob"
+
+[node name="Score" type="Label" parent="."]
+z_index = 1
+offset_left = -18.0
+offset_top = 33.0
+offset_right = 82.0
+offset_bottom = 56.0
+scale = Vector2(0.34, 0.34)
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("7_sab0q")
+text = "Score: 0"
+
+[node name="High Score" type="Label" parent="."]
+z_index = 1
+offset_left = 37.0
+offset_top = 33.0
+offset_right = 294.0
+offset_bottom = 56.0
+scale = Vector2(0.34, 0.34)
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("7_sab0q")
+text = "High Score: 0"
+horizontal_alignment = 2
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_506h2")
+autoplay = true
+playback_type = 1
+script = ExtResource("9_n0nn1")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Death_Timer" to="." method="_on_death_timer_timeout"]
+[connection signal="finished" from="Music" to="Music" method="_on_finished"]

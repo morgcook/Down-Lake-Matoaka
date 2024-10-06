@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://c63eg8e6s22vu"]
+
+[ext_resource type="PackedScene" uid="uid://cfml6resn48u8" path="res://scenes/player.tscn" id="1_alnn0"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_pjix7"]
+[ext_resource type="Texture2D" uid="uid://do0e7jlcki47y" path="res://assets/lanes.png" id="2_4y7ct"]
+[ext_resource type="PackedScene" uid="uid://b55ixuiv0cw7j" path="res://scenes/obstacle.tscn" id="4_m6y6j"]
+
+[node name="Game" type="Node2D"]
+position = Vector2(19, 0)
+script = ExtResource("1_pjix7")
+speed = null
+
+[node name="Player" parent="." instance=ExtResource("1_alnn0")]
+z_index = 1
+position = Vector2(0, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(53, -7)
+zoom = Vector2(8, 8)
+
+[node name="Lanes" type="Node" parent="."]
+
+[node name="Lane" type="Sprite2D" parent="Lanes"]
+position = Vector2(72, 0)
+texture = ExtResource("2_4y7ct")
+
+[node name="Lane2" type="Sprite2D" parent="Lanes"]
+position = Vector2(216, 0)
+texture = ExtResource("2_4y7ct")
+
+[node name="Lane3" type="Sprite2D" parent="Lanes"]
+position = Vector2(360, 0)
+texture = ExtResource("2_4y7ct")
+
+[node name="Obstacles" type="Node" parent="."]
+
+[node name="Obstacle" parent="Obstacles" instance=ExtResource("4_m6y6j")]
+position = Vector2(154, 0)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://c63eg8e6s22vu"]
+
+[ext_resource type="PackedScene" uid="uid://cfml6resn48u8" path="res://scenes/player.tscn" id="1_alnn0"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_drchb"]
+size = Vector2(144, 16)
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_alnn0")]
+z_index = 1
+position = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(53, 0)
+texture = SubResource("PlaceholderTexture2D_drchb")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(53, 16)
+texture = SubResource("PlaceholderTexture2D_drchb")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(53, -16)
+texture = SubResource("PlaceholderTexture2D_drchb")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(53, 1)
+zoom = Vector2(8, 8)

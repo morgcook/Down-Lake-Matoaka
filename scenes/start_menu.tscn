@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://ghnichm4vj4p"]
+
+[ext_resource type="FontFile" uid="uid://dwlgkwuw2de7v" path="res://assets/PixelOperatorMono-Bold.ttf" id="1_74qcy"]
+[ext_resource type="Texture2D" uid="uid://d3r7f28d44ej0" path="res://assets/Menu.png" id="2_23f5g"]
+[ext_resource type="FontFile" uid="uid://blhn13t8etmps" path="res://assets/PixelOperator8-Bold.ttf" id="3_fnmfr"]
+
+[node name="Start Menu" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+z_index = 2
+offset_left = -35.0
+offset_top = -26.0
+offset_right = 37.0
+offset_bottom = 9.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.325331, 2.88785e-07, 1)
+theme_override_constants/line_spacing = -5
+theme_override_fonts/font = ExtResource("1_74qcy")
+theme_override_font_sizes/font_size = 16
+text = "Down Lake
+Matoaka"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.00002, -7.62939e-06)
+texture = ExtResource("2_23f5g")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -31.0
+offset_top = 7.0
+offset_right = 53.0
+offset_bottom = 26.0
+scale = Vector2(0.75, 0.75)
+theme_override_colors/font_color = Color(0.121258, 0.300896, 0.0308531, 1)
+theme_override_colors/font_shadow_color = Color(0.909189, 0.843693, 7.70092e-07, 1)
+theme_override_fonts/font = ExtResource("3_fnmfr")
+theme_override_font_sizes/font_size = 8
+text = "Press space 
+to begin"
+horizontal_alignment = 1
+uppercase = true
